@@ -1,0 +1,20 @@
+# Minimal example
+format = """
+$directory\
+$git_branch\
+$git_status\
+$character"""
+
+[directory]
+truncation_length = 3
+style = "yellow dimmed"
+
+[git_branch]
+style = "purple dimmed"
+
+[git_status]
+style = "red dimmed"
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"

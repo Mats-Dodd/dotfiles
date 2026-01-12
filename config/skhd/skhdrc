@@ -1,0 +1,47 @@
+# Focus windows
+alt - h [app != "Ghostty"] : yabai -m window --focus west
+alt - j [app != "Ghostty"] : yabai -m window --focus south
+alt - k [app != "Ghostty"] : yabai -m window --focus north
+alt - l [app != "Ghostty"] : yabai -m window --focus east
+
+# Swap windows
+shift + alt - h [app != "Ghostty"] : yabai -m window --swap west
+shift + alt - j [app != "Ghostty"] : yabai -m window --swap south
+shift + alt - k [app != "Ghostty"] : yabai -m window --swap north
+shift + alt - l [app != "Ghostty"] : yabai -m window --swap east
+
+# Move window between spaces (and follow it)
+shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+# ...repeat as needed
+
+# Focus spaces quickly
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+
+# Resize / balance / rotate / float
+shift + alt - 0 [app != "Ghostty"] : yabai -m space --balance
+alt - r [app != "Ghostty"] : yabai -m space --rotate 90
+alt - f [app != "Ghostty"] : yabai -m window --toggle zoom-fullscreen
+alt - t [app != "Ghostty"] : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+
+# Hyper (Caps via Karabiner) app launchers
+# Warp (Caps+W) → Space 1
+shift + cmd + alt + ctrl - w : open -a "Warp"; yabai -m space --focus 1
+
+# Arc (Caps+A) → Space 2
+shift + cmd + alt + ctrl - a : open -a "Arc"; yabai -m space --focus 2
+
+# Slack (Caps+S) → Space 3
+shift + cmd + alt + ctrl - s : open -a "Slack"; yabai -m space --focus 3
+
+# Cursor (Caps+C) → Space 4
+shift + cmd + alt + ctrl - c : open -a "Cursor"; yabai -m space --focus 4
+
+# Linear (Caps+L) → Space 5
+shift + cmd + alt + ctrl - l : open -a "Linear"; yabai -m space --focus 5
+
+# Chrome (Caps+H) → Space 6
+shift + cmd + alt + ctrl - h : open -a "Google Chrome"; yabai -m space --focus 6

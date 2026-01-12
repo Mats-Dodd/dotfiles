@@ -1,0 +1,10 @@
+font-family = Berkeley Mono
+theme = afterglow
+
+quick-terminal-position = center
+adjust-cursor-thickness=10
+window-padding-x=20
+window-padding-y=
+
+# Keybindings
+keybind = super+t=new_tab

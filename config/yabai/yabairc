@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+# --- Layout & gaps ---
+yabai -m config layout           bsp           # bsp | stack | float
+yabai -m config top_padding      20
+yabai -m config bottom_padding   20
+yabai -m config left_padding     12
+yabai -m config right_padding    12
+yabai -m config window_gap       12
+
+# Optional: focus follows mouse (off | autofocus | autoraise)
+# yabai -m config focus_follows_mouse autoraise
+
+# Optional: mouse drag/resize with the Fn key
+yabai -m config mouse_modifier   fn
+yabai -m config mouse_action1    move
+yabai -m config mouse_action2    resize
+
+# Optional: borders (work without SIP; colors are ARGB)
+yabai -m config window_border on
+yabai -m config window_border_width 2
+yabai -m config active_window_border_color 0xff5e81ac
+yabai -m config normal_window_border_color 0xff3b4252
+
+# auto-reload scripting addition when Dock restarts, and load it now
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# Pin apps to Spaces (change numbers to taste)
+yabai -m rule --add app="^Warp$"   space=1
+yabai -m rule --add app="^Arc$"    space=2
+yabai -m rule --add app="^Slack$"  space=3
+yabai -m rule --add app="^Cursor$" space=4
+yabai -m rule --add app="^Linear$" space=5
+yabai -m rule --add app="^Google Chrome$" space=6
+
+# (optional) common float exceptions
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$"      manage=off
