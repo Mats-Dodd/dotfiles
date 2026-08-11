@@ -12,8 +12,8 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Delta as the default Git pager
 - Hunk aliases for interactive diff review
 - Helix with a Vesper++ Lighter theme
-- Herdr
-- Ghostty with Berkeley Mono
+- Herdr with Vesper++ Lighter colors
+- Ghostty with Berkeley Mono and Vesper++ Lighter colors
 
 There is intentionally no tmux, yabai, skhd, or shell syntax highlighting.
 
@@ -65,6 +65,12 @@ MIT-licensed palette and inheriting Helix's built-in Vesper scope coverage.
 Editor behavior otherwise remains at its defaults. Add language servers only
 as the work language stack requires them; use `hx --health` to inspect support.
 
+## Herdr
+
+Herdr's interface uses the same Vesper++ Lighter palette as Helix. The theme
+changes Herdr's panels, menus, borders, and semantic state colors without
+changing session, terminal, or remote-access behavior.
+
 ## Structure
 
 ```text
@@ -76,6 +82,7 @@ as the work language stack requires them; use `hx --health` to inspect support.
 │   ├── helix
 │   │   ├── config.toml
 │   │   └── themes/vesper_lighter.toml
+│   ├── herdr/config.toml
 │   └── starship/starship.toml
 ├── git/.gitconfig
 ├── install.sh

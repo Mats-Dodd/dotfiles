@@ -1,4 +1,29 @@
 font-family = Berkeley Mono
+
+background = #161616
+foreground = #FFFFFF
+cursor-color = #FFC799
+cursor-text = #161616
+selection-background = #383838
+selection-foreground = #FFFFFF
+
+palette = 0=#161616
+palette = 1=#FF8080
+palette = 2=#99FFE4
+palette = 3=#FFC799
+palette = 4=#FFC799
+palette = 5=#FBADFF
+palette = 6=#99FFE4
+palette = 7=#E3E3DD
+palette = 8=#161616
+palette = 9=#FF8080
+palette = 10=#99FFE4
+palette = 11=#FFC799
+palette = 12=#FFC799
+palette = 13=#FBADFF
+palette = 14=#99FFE4
+palette = 15=#F8F8F2
+
 macos-titlebar-style = hidden
 window-padding-x = 0
 window-padding-y = 0

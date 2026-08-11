@@ -8,6 +8,7 @@ setopt hist_ignore_space
 setopt share_history
 
 bindkey -e
+zle_highlight=('default:fg=#FFC799')
 
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 autoload -Uz compinit
@@ -46,7 +47,7 @@ if (( $+commands[atuin] )); then
 fi
 
 ZSH_AUTOSUGGEST_STRATEGY=(history)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#595959'
 if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
