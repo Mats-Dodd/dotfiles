@@ -1,0 +1,13 @@
+brew "atuin"
+brew "bat"
+brew "fd"
+brew "fzf"
+brew "git-delta"
+brew "helix"
+brew "herdr"
+brew "hunk"
+brew "starship"
+brew "zsh-autosuggestions"
+brew "zoxide"
+
+cask "ghostty"

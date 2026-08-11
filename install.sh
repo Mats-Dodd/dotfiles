@@ -1,79 +1,43 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Dotfiles Installation Script
-# This script creates symlinks from your home directory to the dotfiles in this repo
-# It will backup any existing files before creating symlinks
-
-set -e
-
-# Colors for output
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BACKUP_DIR="$HOME/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
+BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
+BACKED_UP=false
 
-echo -e "${GREEN}Installing dotfiles from: $DOTFILES_DIR${NC}"
+link_file() {
+  local source="$DOTFILES_DIR/$1"
+  local target="$2"
+  local relative_target="${target#"$HOME"/}"
+  local backup_target="$BACKUP_DIR/$relative_target"
 
-# Create backup directory
-mkdir -p "$BACKUP_DIR"
-echo -e "${YELLOW}Backups will be stored in: $BACKUP_DIR${NC}"
+  if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
+    printf 'unchanged %s\n' "$target"
+    return
+  fi
 
-# Function to create symlink with backup
-create_symlink() {
-    local source="$1"
-    local target="$2"
+  if [[ -e "$target" || -L "$target" ]]; then
+    mkdir -p "$(dirname "$backup_target")"
+    mv "$target" "$backup_target"
+    BACKED_UP=true
+    printf 'backed up %s\n' "$target"
+  fi
 
-    # Create parent directory if it doesn't exist
-    mkdir -p "$(dirname "$target")"
-
-    # Backup existing file/symlink if it exists
-    if [ -e "$target" ] || [ -L "$target" ]; then
-        echo -e "${YELLOW}Backing up existing: $target${NC}"
-        mv "$target" "$BACKUP_DIR/"
-    fi
-
-    # Create symlink
-    ln -sf "$source" "$target"
-    echo -e "${GREEN}✓ Linked: $target -> $source${NC}"
+  mkdir -p "$(dirname "$target")"
+  ln -s "$source" "$target"
+  printf 'linked %s -> %s\n' "$target" "$source"
 }
 
-echo ""
-echo "Creating symlinks..."
-echo ""
+link_file "zsh/.zprofile" "$HOME/.zprofile"
+link_file "zsh/.zshrc" "$HOME/.zshrc"
+link_file "git/.gitconfig" "$HOME/.gitconfig"
+link_file "config/atuin/config.toml" "$HOME/.config/atuin/config.toml"
+link_file "config/ghostty/config" "$HOME/.config/ghostty/config"
+link_file "config/helix/config.toml" "$HOME/.config/helix/config.toml"
+link_file "config/helix/themes/vesper_lighter.toml" "$HOME/.config/helix/themes/vesper_lighter.toml"
+link_file "config/starship/starship.toml" "$HOME/.config/starship.toml"
 
-# Zsh configs
-create_symlink "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
-create_symlink "$DOTFILES_DIR/zsh/.zshenv" "$HOME/.zshenv"
-create_symlink "$DOTFILES_DIR/zsh/.profile" "$HOME/.profile"
-create_symlink "$DOTFILES_DIR/zsh/.zprofile" "$HOME/.zprofile"
-
-# Git config
-create_symlink "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
-
-# Tmux config
-create_symlink "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
-
-# Starship config
-create_symlink "$DOTFILES_DIR/config/starship/starship.toml" "$HOME/.config/starship.toml"
-
-# Ghostty config
-create_symlink "$DOTFILES_DIR/config/ghostty/config" "$HOME/.config/ghostty/config"
-
-# Yabai config
-create_symlink "$DOTFILES_DIR/config/yabai/yabairc" "$HOME/.config/yabai/yabairc"
-
-# Skhd config
-create_symlink "$DOTFILES_DIR/config/skhd/skhdrc" "$HOME/.config/skhd/skhdrc"
-
-echo ""
-echo -e "${GREEN}✅ Dotfiles installation complete!${NC}"
-echo ""
-echo "Next steps:"
-echo "  1. Reload your shell: source ~/.zshrc"
-echo "  2. Restart yabai: brew services restart yabai"
-echo "  3. Restart skhd: brew services restart skhd"
-echo ""
-echo -e "${YELLOW}Your old configs have been backed up to: $BACKUP_DIR${NC}"
+if [[ "$BACKED_UP" == true ]]; then
+  printf 'backups saved to %s\n' "$BACKUP_DIR"
+fi

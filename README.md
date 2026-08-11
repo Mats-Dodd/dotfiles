@@ -1,169 +1,85 @@
-# Dotfiles
+# Work Dotfiles
 
-My personal macOS dotfiles for development environment configuration.
+Minimal macOS configuration for a fast Zsh and terminal workflow.
 
-## What's Included
+## Included
 
-### Shell Configuration
-- **Zsh** - Shell configs with enhancements
-  - fzf (fuzzy finder)
-  - zoxide (smart cd)
-  - zsh-autosuggestions
-  - zsh-syntax-highlighting
-- **Starship** - Minimal, fast prompt
+- Native Zsh without a framework or plugin manager
+- History-only inline autosuggestions
+- Starship with directory and Git branch only
+- fzf, fd, bat, and zoxide
+- Local-only Atuin history
+- Delta as the default Git pager
+- Hunk aliases for interactive diff review
+- Helix with a Vesper++ Lighter theme
+- Herdr
+- Ghostty with Berkeley Mono
 
-### Development Tools
-- **Git** - Aliases, Delta diff viewer, GitButler integration
-- **Tmux** - Terminal multiplexer with vim-style keybindings
-  - Prefix: Ctrl-Space
-  - Mouse support enabled
-  - macOS clipboard integration
+There is intentionally no tmux, yabai, skhd, or shell syntax highlighting.
 
-### Window Management (macOS)
-- **Yabai** - Tiling window manager
-  - Binary space partitioning layout
-  - App pinning to spaces
-  - Window borders
-- **Skhd** - Hotkey daemon for window management
-  - Vim-style window navigation (Alt+hjkl)
-  - App launchers with Hyper key
+## Install
 
-### Terminal
-- **Ghostty** - Modern terminal emulator
-  - Font: Berkeley Mono
-  - Theme: Afterglow
+Install Homebrew first, then review and run the package installation:
 
-## Installation
-
-### Prerequisites
-
-Install Homebrew packages:
-```bash
-# Core tools
-brew install fzf zoxide fd bat starship tmux git-delta
-
-# Shell enhancements
-brew install zsh-autosuggestions zsh-syntax-highlighting
-
-# Window management
-brew install koekeishiya/formulae/yabai koekeishiya/formulae/skhd
-
-# Terminal
-brew install ghostty
-
-# Clipboard integration for tmux
-brew install reattach-to-user-namespace
+```sh
+brew bundle --file ./Brewfile
 ```
 
-### Install Dotfiles
+Link the configuration files separately:
 
-1. Clone this repository:
-```bash
-git clone <your-repo-url> ~/dotfiles
-cd ~/dotfiles
-```
-
-2. Run the install script:
-```bash
+```sh
 ./install.sh
+exec zsh
 ```
 
-This will:
-- Backup your existing configs to `~/.dotfiles_backup_<timestamp>`
-- Create symlinks from your home directory to this repo
-- Preserve your current setup (just in case)
+The link script does not install software. Existing targets are moved to a
+timestamped directory under `~/.dotfiles-backup/`, preserving their paths. It
+is safe to run the script repeatedly.
 
-3. Reload your shell:
-```bash
-source ~/.zshrc
+## Berkeley Mono
+
+Berkeley Mono is licensed software and is not included in this repository.
+Install a properly licensed copy manually. Ghostty will use it once available.
+
+## Atuin
+
+Atuin sync is disabled. History remains in the local Atuin database unless sync
+is explicitly configured later. Atuin owns `Ctrl-R`; fzf continues to provide
+file and directory selection.
+
+## Git
+
+The configuration uses the work identity `Matthew Dodd <mats.dodd12@gmail.com>`.
+Delta remains the standard pager. Hunk is available explicitly:
+
+```sh
+git hdiff
+git hshow HEAD~1
 ```
 
-4. Start window management services:
-```bash
-brew services start yabai
-brew services start skhd
-```
+## Helix
+
+Helix uses a native port of
+[Vesper++ Lighter](https://github.com/itspedr0/vesper), adapted from its
+MIT-licensed palette and inheriting Helix's built-in Vesper scope coverage.
+Editor behavior otherwise remains at its defaults. Add language servers only
+as the work language stack requires them; use `hx --health` to inspect support.
 
 ## Structure
 
+```text
+.
+├── Brewfile
+├── config
+│   ├── atuin/config.toml
+│   ├── ghostty/config
+│   ├── helix
+│   │   ├── config.toml
+│   │   └── themes/vesper_lighter.toml
+│   └── starship/starship.toml
+├── git/.gitconfig
+├── install.sh
+└── zsh
+    ├── .zprofile
+    └── .zshrc
 ```
-dotfiles/
-├── zsh/                 # Shell configurations
-│   ├── .zshrc
-│   ├── .zshenv
-│   ├── .profile
-│   └── .zprofile
-├── config/
-│   ├── starship/        # Prompt configuration
-│   ├── ghostty/         # Terminal emulator
-│   ├── yabai/           # Window manager
-│   └── skhd/            # Hotkey daemon
-├── git/
-│   └── .gitconfig       # Git configuration
-├── tmux/
-│   └── .tmux.conf       # Terminal multiplexer
-├── install.sh           # Installation script
-└── README.md
-```
-
-## Key Features
-
-### Shell Aliases & Functions
-- `ds()` - Fast deploy: stages, commits with Claude-generated message, and pushes
-- Git aliases: `g`, `gs`, `gaa`, `gc`, `gcm`, `gp`, `gpl`, `gco`, `gb`, `gl`
-
-### Git Aliases
-- `cm` - Commit with message
-- `aa` - Add all
-- `s` - Status
-- `pu` - Push to current branch
-- `wclaude` - Create worktree and launch Claude
-
-### Tmux Keybindings
-- Prefix: `Ctrl-Space`
-- Split vertical: `|`
-- Split horizontal: `-`
-- Navigate panes: `h/j/k/l`
-- Resize panes: `Shift+h/j/k/l`
-- Copy mode: `prefix + v`
-
-### Window Management (Yabai + Skhd)
-- Focus windows: `Alt + h/j/k/l`
-- Swap windows: `Shift + Alt + h/j/k/l`
-- Switch spaces: `Alt + 1/2/3`
-- Toggle float: `Alt + t`
-- Toggle fullscreen: `Alt + f`
-- Balance windows: `Shift + Alt + 0`
-
-## Customization
-
-All configs are in plain text. Edit any file in this repo, and changes will reflect immediately via symlinks.
-
-## Updating Dotfiles
-
-After making changes to any config:
-
-```bash
-cd ~/dotfiles
-git add .
-git commit -m "Update config"
-git push
-```
-
-## Uninstall
-
-To remove symlinks and restore backups:
-
-```bash
-# Remove symlinks
-rm ~/.zshrc ~/.zshenv ~/.profile ~/.zprofile ~/.gitconfig ~/.tmux.conf
-rm ~/.config/starship.toml ~/.config/ghostty/config
-rm ~/.config/yabai/yabairc ~/.config/skhd/skhdrc
-
-# Restore from backup (adjust timestamp)
-cp -r ~/.dotfiles_backup_YYYYMMDD_HHMMSS/* ~/
-```
-
-## License
-
-MIT

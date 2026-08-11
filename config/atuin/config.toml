@@ -1,0 +1,5 @@
+auto_sync = false
+search_mode = "fuzzy"
+style = "compact"
+inline_height = 20
+show_preview = true

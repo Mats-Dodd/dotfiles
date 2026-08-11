@@ -1,0 +1,129 @@
+# Adapted from Vesper++ Lighter: https://github.com/itspedr0/vesper
+inherits = "vesper"
+
+attribute = "foreground"
+tag = "orange"
+type = "orange"
+label = "orange"
+operator = "pink"
+function = "orange"
+namespace = "orange"
+comment = "comment"
+constructor = "orange"
+constant = "orange"
+"constant.character.escape" = "muted"
+
+variable = "foreground"
+"variable.builtin" = "muted"
+"variable.parameter" = "foreground"
+"variable.other.member" = "foreground"
+
+keyword = "pink"
+"keyword.control" = "pink"
+"keyword.operator" = "pink"
+"keyword.function" = "pink"
+"keyword.directive" = "pink"
+"keyword.storage" = "pink"
+
+string = "mint"
+"string.regexp" = "muted"
+"string.special" = "mint"
+"string.special.path" = "muted"
+"string.special.url" = { fg = "orange", underline = { style = "line" } }
+
+punctuation = "muted"
+"punctuation.delimiter" = "foreground"
+"punctuation.special" = "mint"
+
+"markup.heading" = { fg = "orange", modifiers = ["bold"] }
+"markup.bold" = { fg = "foreground", modifiers = ["bold"] }
+"markup.italic" = { fg = "foreground", modifiers = ["italic"] }
+"markup.link" = { fg = "orange", underline = { style = "line" } }
+"markup.quote" = "mint"
+"markup.raw" = "muted"
+
+"diff.plus" = "mint"
+"diff.minus" = "red"
+"diff.delta" = "orange"
+
+error = "red"
+warning = "orange"
+info = "mint"
+hint = "muted"
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "orange", style = "curl" } }
+"diagnostic.info" = { underline = { color = "mint", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "muted", style = "curl" } }
+
+"ui.background" = { fg = "foreground", bg = "background" }
+"ui.background.separator" = { fg = "surface-hover" }
+"ui.text" = "foreground"
+"ui.text.focus" = { fg = "background", bg = "orange" }
+"ui.text.inactive" = "muted"
+"ui.text.info" = "orange"
+"ui.window" = "orange"
+"ui.help" = { fg = "foreground", bg = "surface" }
+"ui.popup" = { fg = "foreground", bg = "surface" }
+"ui.popup.info" = { fg = "foreground", bg = "surface" }
+
+"ui.gutter" = { bg = "background" }
+"ui.gutter.selected" = { bg = "surface" }
+"ui.linenr" = "line-number"
+"ui.linenr.selected" = "orange"
+"ui.cursor" = { fg = "background", bg = "orange" }
+"ui.cursor.primary" = { fg = "background", bg = "orange" }
+"ui.cursor.insert" = { fg = "background", bg = "mint" }
+"ui.cursor.select" = { fg = "background", bg = "pink" }
+"ui.cursor.match" = { fg = "orange", modifiers = ["bold"] }
+"ui.cursorline.primary" = { bg = "surface" }
+"ui.cursorline.secondary" = { bg = "surface" }
+"ui.selection" = { bg = "selection" }
+"ui.selection.primary" = { bg = "selection-primary" }
+
+"ui.menu" = { fg = "foreground", bg = "surface" }
+"ui.menu.selected" = { fg = "orange", bg = "surface-hover" }
+"ui.menu.scroll" = { fg = "muted", bg = "surface" }
+"ui.picker.header" = { fg = "muted", bg = "surface" }
+"ui.picker.header.column" = "muted"
+"ui.picker.header.column.active" = "orange"
+
+"ui.statusline" = { fg = "muted", bg = "background" }
+"ui.statusline.inactive" = { fg = "comment", bg = "background" }
+"ui.statusline.normal" = { fg = "background", bg = "orange" }
+"ui.statusline.insert" = { fg = "background", bg = "mint" }
+"ui.statusline.select" = { fg = "background", bg = "pink" }
+"ui.statusline.separator" = "surface-hover"
+
+"ui.bufferline" = { fg = "muted", bg = "background" }
+"ui.bufferline.active" = { fg = "orange", bg = "surface" }
+"ui.bufferline.background" = { bg = "background" }
+"ui.virtual.whitespace" = "line-number"
+"ui.virtual.indent-guide" = "surface-hover"
+"ui.virtual.inlay-hint" = { fg = "muted", bg = "surface" }
+"ui.virtual.jump-label" = { fg = "background", bg = "orange", modifiers = ["bold"] }
+
+[palette]
+background = "#161616"
+foreground = "#FFFFFF"
+surface = "#1C1C1C"
+surface-hover = "#282828"
+selection = "#383838"
+selection-primary = "#484848"
+line-number = "#505050"
+muted = "#A0A0A0"
+comment = "#595959"
+orange = "#FFC799"
+mint = "#99FFE4"
+pink = "#FBADFF"
+red = "#FF8080"
+
+# Override palette names referenced by the inherited Vesper scopes.
+black = "#161616"
+white = "#FFFFFF"
+dark-gray = "#1C1C1C"
+dim-gray = "#505050"
+gray = "#A0A0A0"
+beige = "#FFC799"
+bright-green = "#99FFE4"
+bg-selection = "#383838"
+cursor = "#FFC799"

@@ -1,9 +1,10 @@
-# Minimal example
 format = """
 $directory\
 $git_branch\
-$git_status\
 $character"""
+
+add_newline = false
+scan_timeout = 10
 
 [directory]
 truncation_length = 3
@@ -11,9 +12,6 @@ style = "yellow dimmed"
 
 [git_branch]
 style = "purple dimmed"
-
-[git_status]
-style = "red dimmed"
 
 [character]
 success_symbol = "[❯](green)"
