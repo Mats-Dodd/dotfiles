@@ -37,6 +37,7 @@ link_file "config/ghostty/config" "$HOME/.config/ghostty/config"
 link_file "config/helix/config.toml" "$HOME/.config/helix/config.toml"
 link_file "config/helix/themes/vesper_lighter.toml" "$HOME/.config/helix/themes/vesper_lighter.toml"
 link_file "config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+link_file "config/hunk/config.toml" "$HOME/.config/hunk/config.toml"
 link_file "config/starship/starship.toml" "$HOME/.config/starship.toml"
 
 if [[ "$BACKED_UP" == true ]]; then

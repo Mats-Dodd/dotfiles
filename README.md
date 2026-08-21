@@ -10,7 +10,7 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - fzf, fd, bat, and zoxide
 - Local-only Atuin history
 - Delta as the default Git pager
-- Hunk aliases for interactive diff review
+- Hunk aliases, Vesper++ Lighter colors, and review preferences
 - Helix with a Vesper++ Lighter theme
 - Herdr with Vesper++ Lighter colors
 - Ghostty with Berkeley Mono and Vesper++ Lighter colors
@@ -71,6 +71,12 @@ Herdr's interface uses the same Vesper++ Lighter palette as Helix. The theme
 changes Herdr's panels, menus, borders, and semantic state colors without
 changing session, terminal, or remote-access behavior.
 
+## Hunk
+
+Hunk uses the same Vesper++ Lighter palette for its interface, syntax, and diff
+states. Its portable review preferences live alongside the theme; runtime state
+remains local to the machine.
+
 ## Structure
 
 ```text
@@ -83,6 +89,7 @@ changing session, terminal, or remote-access behavior.
 │   │   ├── config.toml
 │   │   └── themes/vesper_lighter.toml
 │   ├── herdr/config.toml
+│   ├── hunk/config.toml
 │   └── starship/starship.toml
 ├── git/.gitconfig
 ├── install.sh

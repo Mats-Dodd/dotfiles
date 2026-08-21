@@ -1,0 +1,56 @@
+theme = "vesper-lighter"
+mode = "stack"
+line_numbers = true
+wrap_lines = true
+hunk_headers = true
+menu_bar = true
+agent_notes = false
+copy_decorations = false
+cursor_line = "row"
+
+[themes.vesper-lighter]
+base = "vesper"
+label = "Vesper++ Lighter"
+background = "#161616"
+panel = "#1C1C1C"
+panelAlt = "#282828"
+border = "#282828"
+accent = "#FFC799"
+accentMuted = "#383838"
+text = "#FFFFFF"
+muted = "#A0A0A0"
+addedBg = "#37514A"
+removedBg = "#513131"
+movedAddedBg = "#383838"
+movedRemovedBg = "#383838"
+contextBg = "#161616"
+addedContentBg = "#37514A"
+removedContentBg = "#513131"
+contextContentBg = "#161616"
+addedSignColor = "#99FFE4"
+removedSignColor = "#FF8080"
+lineNumberBg = "#161616"
+lineNumberFg = "#595959"
+selectedHunk = "#383838"
+badgeAdded = "#99FFE4"
+badgeRemoved = "#FF8080"
+badgeNeutral = "#A0A0A0"
+fileNew = "#99FFE4"
+fileDeleted = "#FF8080"
+fileRenamed = "#FFC799"
+fileModified = "#FFC799"
+fileUntracked = "#99FFE4"
+noteBorder = "#FBADFF"
+noteBackground = "#1C1C1C"
+noteTitleBackground = "#282828"
+noteTitleText = "#FBADFF"
+
+[themes.vesper-lighter.syntax_scopes]
+"comment" = "#595959"
+"punctuation.definition.comment" = "#595959"
+"keyword" = "#FBADFF"
+"keyword.control" = "#FBADFF"
+"keyword.operator" = "#FBADFF"
+"storage.type" = "#FBADFF"
+"storage.modifier" = "#FBADFF"
+"punctuation" = "#A0A0A0"
