@@ -12,6 +12,7 @@ zle_highlight=('default:fg=#FFC799')
 
 eval "$(mise activate zsh)"
 
+typeset -U fpath FPATH
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
@@ -21,7 +22,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 export OTUI_PALETTE_IDLE_TIMEOUT_MS=1
 export OPENCODE_FAST_BOOT=1
-
 
 alias o='opencode'
 alias g='git'
@@ -59,24 +59,6 @@ if (( $+commands[starship] )); then
   eval "$(starship init zsh)"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# nvm auto-use: automatically switch Node version based on .nvmrc
-autoload -U add-zsh-hook
-load-nvmrc() {
-    local nvmrc_path="$(nvm_find_nvmrc)"
-    if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-            nvm install
-        elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-            nvm use
-        fi
-    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-        nvm use default
-    fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+if [[ -r "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi

@@ -9,13 +9,15 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Starship with directory and Git branch only
 - fzf, fd, bat, and zoxide
 - Local-only Atuin history
+- Mise-managed Node with `.nvmrc` support
 - Delta as the default Git pager
 - Hunk aliases, Vesper++ Lighter colors, and review preferences
 - Helix with a Vesper++ Lighter theme
 - Herdr with Vesper++ Lighter colors
 - Ghostty with Berkeley Mono and Vesper++ Lighter colors
+- AeroSpace with Vim-style navigation and JankyBorders
 
-There is intentionally no tmux, yabai, skhd, or shell syntax highlighting.
+There is intentionally no tmux or shell syntax highlighting.
 
 ## Install
 
@@ -49,13 +51,26 @@ file and directory selection.
 
 ## Git
 
-The configuration uses the work identity `Matthew Dodd <mats.dodd12@gmail.com>`.
+User and work identity belong in the untracked `~/.gitconfig.local` file.
+Machine- and employer-specific shell settings belong in `~/.zshrc.local`.
 Delta remains the standard pager. Hunk is available explicitly:
 
 ```sh
 git hdiff
 git hshow HEAD~1
 ```
+
+## Mise
+
+Mise manages the default Node version and automatically honors project
+`.nvmrc` files. Node versions and globally installed npm packages remain
+machine-local.
+
+## AeroSpace
+
+AeroSpace provides nine persistent workspaces, Vim-style focus and movement,
+and small gaps. JankyBorders highlights the active window. AeroSpace starts at
+login and launches the border process itself.
 
 ## Helix
 
@@ -83,6 +98,7 @@ remains local to the machine.
 .
 ├── Brewfile
 ├── config
+│   ├── aerospace/aerospace.toml
 │   ├── atuin/config.toml
 │   ├── ghostty/config
 │   ├── helix
@@ -90,6 +106,7 @@ remains local to the machine.
 │   │   └── themes/vesper_lighter.toml
 │   ├── herdr/config.toml
 │   ├── hunk/config.toml
+│   ├── mise/config.toml
 │   └── starship/starship.toml
 ├── git/.gitconfig
 ├── install.sh

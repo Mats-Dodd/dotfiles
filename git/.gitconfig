@@ -1,6 +1,5 @@
-[user]
-	name = Matthew Dodd
-	email = mats.dodd12@gmail.com
+[include]
+	path = ~/.gitconfig.local
 [alias]
 	aa = add --all
 	cm = commit -m

@@ -1,5 +1,9 @@
+tap "felixkratz/formulae"
+tap "nikitabobko/tap"
+
 brew "atuin"
 brew "bat"
+brew "felixkratz/formulae/borders"
 brew "fd"
 brew "fzf"
 brew "git-delta"
@@ -10,4 +14,5 @@ brew "starship"
 brew "zsh-autosuggestions"
 brew "zoxide"
 
+cask "nikitabobko/tap/aerospace"
 cask "ghostty"

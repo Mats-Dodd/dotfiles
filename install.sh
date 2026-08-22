@@ -32,12 +32,14 @@ link_file() {
 link_file "zsh/.zprofile" "$HOME/.zprofile"
 link_file "zsh/.zshrc" "$HOME/.zshrc"
 link_file "git/.gitconfig" "$HOME/.gitconfig"
+link_file "config/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
 link_file "config/atuin/config.toml" "$HOME/.config/atuin/config.toml"
 link_file "config/ghostty/config" "$HOME/.config/ghostty/config"
 link_file "config/helix/config.toml" "$HOME/.config/helix/config.toml"
 link_file "config/helix/themes/vesper_lighter.toml" "$HOME/.config/helix/themes/vesper_lighter.toml"
 link_file "config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 link_file "config/hunk/config.toml" "$HOME/.config/hunk/config.toml"
+link_file "config/mise/config.toml" "$HOME/.config/mise/config.toml"
 link_file "config/starship/starship.toml" "$HOME/.config/starship.toml"
 
 if [[ "$BACKED_UP" == true ]]; then
