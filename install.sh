@@ -36,12 +36,12 @@ link_file "config/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.t
 link_file "config/atuin/config.toml" "$HOME/.config/atuin/config.toml"
 link_file "config/ghostty/config" "$HOME/.config/ghostty/config"
 link_file "config/helix/config.toml" "$HOME/.config/helix/config.toml"
-link_file "config/helix/themes/vesper_lighter.toml" "$HOME/.config/helix/themes/vesper_lighter.toml"
+link_file "config/helix/themes/vigil.toml" "$HOME/.config/helix/themes/vigil.toml"
 link_file "config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 link_file "config/hunk/config.toml" "$HOME/.config/hunk/config.toml"
 link_file "config/mise/config.toml" "$HOME/.config/mise/config.toml"
 link_file "config/starship/starship.toml" "$HOME/.config/starship.toml"
-link_file "config/zed/themes/vesper-lighter.json" "$HOME/.config/zed/themes/vesper-lighter.json"
+link_file "config/zed/themes/vigil.json" "$HOME/.config/zed/themes/vigil.json"
 
 if [[ "$BACKED_UP" == true ]]; then
   printf 'backups saved to %s\n' "$BACKUP_DIR"

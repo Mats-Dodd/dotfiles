@@ -11,11 +11,11 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Local-only Atuin history
 - Mise-managed Node, pnpm, Bun, and Rust, with `.nvmrc` support
 - Delta as the default Git pager
-- Hunk aliases, Vesper++ Lighter colors, and review preferences
-- Helix with a Vesper++ Lighter theme
-- Herdr with Vesper++ Lighter colors
-- Ghostty with Berkeley Mono and Vesper++ Lighter colors
-- Zed with a native Vesper++ Lighter theme
+- Hunk aliases, Vigil colors, and review preferences
+- Helix with a Vigil theme
+- Herdr with Vigil colors
+- Ghostty with Berkeley Mono and Vigil colors
+- Zed with a native Vigil theme
 - AeroSpace with Vim-style navigation and JankyBorders
 
 There is intentionally no tmux or shell syntax highlighting.
@@ -90,33 +90,33 @@ login and launches the border process itself.
 ## Helix
 
 Helix uses a native port of
-[Vesper++ Lighter](https://github.com/itspedr0/vesper), adapted from its
+Vigil, the author's fork of [Vesper](https://github.com/itspedr0/vesper), adapted from its
 MIT-licensed palette and inheriting Helix's built-in Vesper scope coverage.
 Editor behavior otherwise remains at its defaults. Add language servers only
 as the work language stack requires them; use `hx --health` to inspect support.
 
 ## Herdr
 
-Herdr's interface uses the same Vesper++ Lighter palette as Helix. The theme
+Herdr's interface uses the same Vigil palette as Helix. The theme
 changes Herdr's panels, menus, borders, and semantic state colors without
 changing session, terminal, or remote-access behavior.
 
 ## Hunk
 
-Hunk uses the same Vesper++ Lighter palette for its interface, syntax, and diff
+Hunk uses the same Vigil palette for its interface, syntax, and diff
 states. Its portable review preferences live alongside the theme; runtime state
 remains local to the machine.
 
 ## Zed
 
-Zed uses a native Vesper++ Lighter theme for its editor, interface, syntax,
-diagnostics, Git states, and integrated terminal. Select `Vesper++ Lighter`
+Zed uses a native Vigil theme for its editor, interface, syntax,
+diagnostics, Git states, and integrated terminal. Select `Vigil`
 from Zed's theme selector, then optionally add Berkeley Mono to
 `~/.config/zed/settings.json`:
 
 ```json
 {
-  "theme": "Vesper++ Lighter",
+  "theme": "Vigil",
   "buffer_font_family": "Berkeley Mono",
   "terminal": {
     "font_family": "Berkeley Mono"
@@ -135,12 +135,12 @@ from Zed's theme selector, then optionally add Berkeley Mono to
 │   ├── ghostty/config
 │   ├── helix
 │   │   ├── config.toml
-│   │   └── themes/vesper_lighter.toml
+│   │   └── themes/vigil.toml
 │   ├── herdr/config.toml
 │   ├── hunk/config.toml
 │   ├── mise/config.toml
 │   ├── starship/starship.toml
-│   └── zed/themes/vesper-lighter.json
+│   └── zed/themes/vigil.json
 ├── git/.gitconfig
 ├── install.sh
 └── zsh

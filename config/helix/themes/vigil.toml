@@ -1,4 +1,4 @@
-# Adapted from Vesper++ Lighter: https://github.com/itspedr0/vesper
+# Vigil — adapted from Vesper: https://github.com/itspedr0/vesper
 inherits = "vesper"
 
 attribute = "foreground"

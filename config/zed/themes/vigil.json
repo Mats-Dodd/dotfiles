@@ -1,10 +1,10 @@
 {
   "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
-  "name": "Vesper++ Lighter",
+  "name": "Vigil",
   "author": "Matthew Dodd",
   "themes": [
     {
-      "name": "Vesper++ Lighter",
+      "name": "Vigil",
       "appearance": "dark",
       "style": {
         "accents": [
