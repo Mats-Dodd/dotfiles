@@ -9,7 +9,7 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Starship with directory and Git branch only
 - fzf, fd, bat, and zoxide
 - Local-only Atuin history
-- Mise-managed Node with `.nvmrc` support
+- Mise-managed Node, pnpm, Bun, and Rust, with `.nvmrc` support
 - Delta as the default Git pager
 - Hunk aliases, Vesper++ Lighter colors, and review preferences
 - Helix with a Vesper++ Lighter theme
@@ -63,9 +63,9 @@ git hshow HEAD~1
 
 ## Mise
 
-Mise manages the default Node version and automatically honors project
-`.nvmrc` files. Node versions and globally installed npm packages remain
-machine-local.
+Mise manages the default Node, pnpm, Bun, and Rust versions and automatically
+honors project `.nvmrc` files. Tool installations and globally installed
+packages remain machine-local.
 
 ## AeroSpace
 
