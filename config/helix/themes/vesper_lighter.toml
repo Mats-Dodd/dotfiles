@@ -36,7 +36,7 @@ punctuation = "muted"
 "punctuation.special" = "mint"
 
 "markup.heading" = { fg = "orange", modifiers = ["bold"] }
-"markup.bold" = { fg = "foreground", modifiers = ["bold"] }
+"markup.bold" = { fg = "foreground-bright", modifiers = ["bold"] }
 "markup.italic" = { fg = "foreground", modifiers = ["italic"] }
 "markup.link" = { fg = "orange", underline = { style = "line" } }
 "markup.quote" = "mint"
@@ -104,7 +104,8 @@ hint = "muted"
 
 [palette]
 background = "#161616"
-foreground = "#FFFFFF"
+foreground = "#D6D6D0"
+foreground-bright = "#E3E3DD"
 surface = "#1C1C1C"
 surface-hover = "#282828"
 selection = "#383838"
@@ -119,7 +120,7 @@ red = "#FF8080"
 
 # Override palette names referenced by the inherited Vesper scopes.
 black = "#161616"
-white = "#FFFFFF"
+white = "#D6D6D0"
 dark-gray = "#1C1C1C"
 dim-gray = "#505050"
 gray = "#A0A0A0"

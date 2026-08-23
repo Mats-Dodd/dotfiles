@@ -15,6 +15,7 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Helix with a Vesper++ Lighter theme
 - Herdr with Vesper++ Lighter colors
 - Ghostty with Berkeley Mono and Vesper++ Lighter colors
+- Zed with a native Vesper++ Lighter theme
 - AeroSpace with Vim-style navigation and JankyBorders
 
 There is intentionally no tmux or shell syntax highlighting.
@@ -92,6 +93,23 @@ Hunk uses the same Vesper++ Lighter palette for its interface, syntax, and diff
 states. Its portable review preferences live alongside the theme; runtime state
 remains local to the machine.
 
+## Zed
+
+Zed uses a native Vesper++ Lighter theme for its editor, interface, syntax,
+diagnostics, Git states, and integrated terminal. Select `Vesper++ Lighter`
+from Zed's theme selector, then optionally add Berkeley Mono to
+`~/.config/zed/settings.json`:
+
+```json
+{
+  "theme": "Vesper++ Lighter",
+  "buffer_font_family": "Berkeley Mono",
+  "terminal": {
+    "font_family": "Berkeley Mono"
+  }
+}
+```
+
 ## Structure
 
 ```text
@@ -107,7 +125,8 @@ remains local to the machine.
 │   ├── herdr/config.toml
 │   ├── hunk/config.toml
 │   ├── mise/config.toml
-│   └── starship/starship.toml
+│   ├── starship/starship.toml
+│   └── zed/themes/vesper-lighter.json
 ├── git/.gitconfig
 ├── install.sh
 └── zsh

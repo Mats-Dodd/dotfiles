@@ -41,6 +41,7 @@ link_file "config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 link_file "config/hunk/config.toml" "$HOME/.config/hunk/config.toml"
 link_file "config/mise/config.toml" "$HOME/.config/mise/config.toml"
 link_file "config/starship/starship.toml" "$HOME/.config/starship.toml"
+link_file "config/zed/themes/vesper-lighter.json" "$HOME/.config/zed/themes/vesper-lighter.json"
 
 if [[ "$BACKED_UP" == true ]]; then
   printf 'backups saved to %s\n' "$BACKUP_DIR"
