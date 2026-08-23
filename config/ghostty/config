@@ -1,4 +1,10 @@
 font-family = Berkeley Mono
+# Bold renders at 600, not 700 — the web/blog "never-700" rule; 700 in this
+# face reads ransom-note at terminal sizes.
+font-variation-bold = wght=600
+# Optional optical-weight experiment: light-on-#161616 halates, and the font's
+# "Retina" instance (375) exists for exactly this. Uncomment to try:
+# font-variation = wght=375
 
 background = #161616
 foreground = #D6D6D0

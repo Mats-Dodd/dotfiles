@@ -44,6 +44,20 @@ is safe to run the script repeatedly.
 Berkeley Mono is licensed software and is not included in this repository.
 Install a properly licensed copy manually. Ghostty will use it once available.
 
+The current install is the **variable** build: TX-02 v2.004, one OTF
+(`BerkeleyMonoVariable.otf`), compiled with `zero.dotted` + `seven.european`
+(matching the web build on chezdodds.dev). Recompile at usgraphics.com with
+those options for reproducibility. Ghostty maps bold to wght 600
+(`font-variation-bold`) — the "never 700" rule from the blog's type system.
+
+Two measured facts worth knowing:
+
+- Box-drawing glyphs are exactly **1.2 em** tall. Anything rendering ASCII
+  diagrams outside a terminal (e.g. Zed) needs line-height 1.2 for verticals
+  to join: `"buffer_line_height": { "custom": 1.2 }`.
+- The variable axes are wght 100–900, wdth 60–100, slnt −16–0, with named
+  instances including Retina (375) and Book (450).
+
 ## Atuin
 
 Atuin sync is disabled. History remains in the local Atuin database unless sync
