@@ -1,0 +1,44 @@
+{
+  "name": "vigil-theme",
+  "displayName": "Vigil",
+  "description": "A watchful, Vesper-descended dark theme for VS Code and Zed.",
+  "version": "0.1.1",
+  "publisher": "matthewdodd",
+  "license": "MIT",
+  "homepage": "https://github.com/Mats-Dodd/vigil#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mats-Dodd/vigil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mats-Dodd/vigil/issues"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark theme",
+    "vesper",
+    "vigil"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "id": "vigil",
+        "label": "Vigil",
+        "uiTheme": "vs-dark",
+        "path": "./vscode/vigil-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "npm run build && npm run check",
+    "package:vscode": "npx @vscode/vsce package"
+  }
+}

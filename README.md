@@ -15,7 +15,7 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Helix with a Vigil theme
 - Herdr with Vigil colors
 - Ghostty with Berkeley Mono and Vigil colors
-- Zed with a native Vigil theme
+- Zed and VS Code-compatible editors with system-switching Laude and Vigil themes
 - AeroSpace with Vim-style navigation and JankyBorders
 
 There is intentionally no tmux or shell syntax highlighting.
@@ -109,10 +109,25 @@ remains local to the machine.
 
 ## Zed
 
-Zed uses a native Vigil theme for its editor, interface, syntax,
-diagnostics, Git states, and integrated terminal. Select `Vigil`
-from Zed's theme selector, then optionally add Berkeley Mono to
-`~/.config/zed/settings.json`:
+Zed uses Laude in light mode and Vigil in dark mode, following the system
+appearance. Both native themes cover the editor, interface, syntax,
+diagnostics, Git states, and integrated terminal.
+
+## VS Code and Cursor
+
+The link installer exposes self-contained Laude and Vigil extensions to both
+VS Code and Cursor. Their shared settings follow the system appearance, using
+Laude in light mode and Vigil in dark mode.
+
+The canonical theme sources live in the sibling `laude` and `vigil`
+repositories. After changing either theme, refresh the copies tracked here:
+
+```sh
+./scripts/sync-themes.sh
+```
+
+Fonts remain editor settings rather than theme properties. To use Berkeley
+Mono in Zed, add it to `~/.config/zed/settings.json`:
 
 ```json
 {
@@ -140,9 +155,15 @@ from Zed's theme selector, then optionally add Berkeley Mono to
 │   ├── hunk/config.toml
 │   ├── mise/config.toml
 │   ├── starship/starship.toml
-│   └── zed/themes/vigil.json
+│   ├── vscode
+│   │   ├── extensions/{laude-theme,vigil-theme}
+│   │   └── settings.json
+│   └── zed
+│       ├── settings.json
+│       └── themes/{laude.json,vigil.json}
 ├── git/.gitconfig
 ├── install.sh
+├── scripts/sync-themes.sh
 └── zsh
     ├── .zprofile
     └── .zshrc

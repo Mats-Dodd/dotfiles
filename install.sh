@@ -41,7 +41,18 @@ link_file "config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 link_file "config/hunk/config.toml" "$HOME/.config/hunk/config.toml"
 link_file "config/mise/config.toml" "$HOME/.config/mise/config.toml"
 link_file "config/starship/starship.toml" "$HOME/.config/starship.toml"
+link_file "config/zed/settings.json" "$HOME/.config/zed/settings.json"
+link_file "config/zed/themes/laude.json" "$HOME/.config/zed/themes/laude.json"
 link_file "config/zed/themes/vigil.json" "$HOME/.config/zed/themes/vigil.json"
+
+# Cursor uses the VS Code extension and settings formats. Keep the same local
+# extensions ready for VS Code as well, even when it is installed later.
+link_file "config/vscode/settings.json" "$HOME/Library/Application Support/Cursor/User/settings.json"
+link_file "config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+link_file "config/vscode/extensions/laude-theme" "$HOME/.cursor/extensions/matthewdodd.laude-theme-0.1.0"
+link_file "config/vscode/extensions/vigil-theme" "$HOME/.cursor/extensions/matthewdodd.vigil-theme-0.1.1"
+link_file "config/vscode/extensions/laude-theme" "$HOME/.vscode/extensions/matthewdodd.laude-theme-0.1.0"
+link_file "config/vscode/extensions/vigil-theme" "$HOME/.vscode/extensions/matthewdodd.vigil-theme-0.1.1"
 
 if [[ "$BACKED_UP" == true ]]; then
   printf 'backups saved to %s\n' "$BACKUP_DIR"

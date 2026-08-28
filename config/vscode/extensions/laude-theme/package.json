@@ -1,0 +1,44 @@
+{
+  "name": "laude-theme",
+  "displayName": "Laude",
+  "description": "A paper-and-ink light theme for VS Code and Zed, paired with Vigil.",
+  "version": "0.1.0",
+  "publisher": "matthewdodd",
+  "license": "MIT",
+  "homepage": "https://github.com/Mats-Dodd/laude#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mats-Dodd/laude.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mats-Dodd/laude/issues"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "light theme",
+    "vesper",
+    "laude"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "id": "laude",
+        "label": "Laude",
+        "uiTheme": "vs",
+        "path": "./vscode/laude-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "npm run build && npm run check",
+    "package:vscode": "npx @vscode/vsce package"
+  }
+}
