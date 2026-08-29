@@ -1,6 +1,6 @@
 # Vigil
 
-Vigil is a watchful, Vesper-descended dark theme for VS Code and Zed. It uses
+Vigil is a watchful, Vesper-descended dark theme for VS Code, Zed, and Pi. It uses
 a near-black neutral foundation, warm orange navigation, mint strings, pink
 control flow, and red diagnostics without turning ordinary code into confetti.
 
@@ -39,11 +39,17 @@ repository. Then select **Vigil** with `theme selector: toggle`.
 For a file-only local install, copy `themes/vigil.json` to
 `~/.config/zed/themes/vigil.json` and restart Zed.
 
+### Pi
+
+Copy `pi/vigil.json` to `~/.pi/agent/themes/vigil.json`, then choose `vigil`
+from `/settings`. Pi hot-reloads the active theme while the file changes.
+
 ## Development
 
-The two editor formats are intentionally authored separately because VS Code
-uses TextMate plus semantic tokens while Zed uses native syntax captures. They
-share exact colors through symbolic references to `src/palette.json`:
+The native formats are intentionally authored separately because VS Code uses
+TextMate plus semantic tokens, Zed uses native syntax captures, and Pi uses
+semantic TUI roles. They share exact colors through symbolic references to
+`src/palette.json`:
 
 ```json
 {
@@ -53,7 +59,7 @@ share exact colors through symbolic references to `src/palette.json`:
 }
 ```
 
-Build and validate both distributables without installing dependencies:
+Build and validate every distributable without installing dependencies:
 
 ```sh
 npm test
@@ -63,8 +69,9 @@ npm test
 
 - `vscode/vigil-color-theme.json`
 - `themes/vigil.json`
+- `pi/vigil.json`
 
-`scripts/check.mjs` enforces the palette, editor parity, manifest versions,
+`scripts/check.mjs` enforces the palette, format parity, manifest versions,
 coverage floors, attribution, fixtures, and the no-pure-white rule.
 
 When tuning syntax, inspect the files in `fixtures/`. In VS Code, use

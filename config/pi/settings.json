@@ -1,0 +1,15 @@
+{
+  "theme": "vigil",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
+  "hideThinkingBlock": true,
+  "compaction": {
+    "enabled": true
+  },
+  "packages": [
+    "npm:@ogulcancelik/pi-codex-compaction@0.1.4",
+    "npm:@pi-plugins/fast-mode@0.1.10"
+  ],
+  "lastChangelogVersion": "0.84.4"
+}

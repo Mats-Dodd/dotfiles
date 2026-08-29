@@ -15,6 +15,7 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Helix with a Vigil theme
 - Herdr with Vigil colors
 - Ghostty with Berkeley Mono and Vigil colors
+- Pi with a native Vigil TUI theme
 - Zed and VS Code-compatible editors with system-switching Laude and Vigil themes
 - AeroSpace with Vim-style navigation and JankyBorders
 
@@ -107,6 +108,19 @@ Hunk uses the same Vigil palette for its interface, syntax, and diff
 states. Its portable review preferences live alongside the theme; runtime state
 remains local to the machine.
 
+## Pi
+
+Pi uses a native Vigil theme for messages, tools, Markdown, diffs, syntax, and
+thinking-level borders. It defaults to `openai-codex/gpt-5.6-sol` with medium
+thinking and enables Fast mode only for that model. The pinned remote-compaction
+extension replaces Pi's local conversation summary with OpenAI's server-side
+checkpoint at 90% of the model's context window.
+
+The installer links the tracked settings, extension configuration, compaction
+configuration, and theme into `~/.pi/agent`. Pi automatically installs missing
+packages declared in `settings.json`; downloaded packages, credentials, models,
+and sessions remain machine-local.
+
 ## Zed
 
 Zed uses Laude in light mode and Vigil in dark mode, following the system
@@ -154,6 +168,11 @@ Mono in Zed, add it to `~/.config/zed/settings.json`:
 │   ├── herdr/config.toml
 │   ├── hunk/config.toml
 │   ├── mise/config.toml
+│   ├── pi
+│   │   ├── extensions/fast-mode.json
+│   │   ├── pi-codex-compaction.json
+│   │   ├── settings.json
+│   │   └── themes/vigil.json
 │   ├── starship/starship.toml
 │   ├── vscode
 │   │   ├── extensions/{laude-theme,vigil-theme}

@@ -1,7 +1,7 @@
 {
   "name": "vigil-theme",
   "displayName": "Vigil",
-  "description": "A watchful, Vesper-descended dark theme for VS Code and Zed.",
+  "description": "A watchful, Vesper-descended dark theme for VS Code, Zed, and Pi.",
   "version": "0.1.1",
   "publisher": "matthewdodd",
   "license": "MIT",
