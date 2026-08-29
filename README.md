@@ -9,7 +9,7 @@ Minimal macOS configuration for a fast Zsh and terminal workflow.
 - Starship with directory and Git branch only
 - fzf, fd, bat, and zoxide
 - Local-only Atuin history
-- Mise-managed Node, pnpm, Bun, and Rust, with `.nvmrc` support
+- Mise-managed Node, pnpm, Bun, Rust, Go, uv, and Pi, with `.nvmrc` support
 - Delta as the default Git pager
 - Hunk aliases, Vigil colors, and review preferences
 - Helix with a Vigil theme
@@ -34,6 +34,7 @@ Link the configuration files separately:
 ```sh
 ./install.sh
 exec zsh
+mise install
 ```
 
 The link script does not install software. Existing targets are moved to a
@@ -78,9 +79,20 @@ git hshow HEAD~1
 
 ## Mise
 
-Mise manages the default Node, pnpm, Bun, and Rust versions and automatically
-honors project `.nvmrc` files. Tool installations and globally installed
-packages remain machine-local.
+Mise manages pinned versions of Node, pnpm, Bun, Rust, Go, uv, and the Pi
+coding agent, and automatically honors project `.nvmrc` files. Python projects
+and Python-based tools should use uv rather than global pip, pipx, or pipenv
+installations.
+
+## Audit
+
+Run the read-only environment audit to report dotfile drift, Homebrew packages
+outside the Brewfile, mise versions, global language packages, command
+ownership, broken executable links, and unmanaged config directories:
+
+```sh
+./scripts/audit.sh
+```
 
 ## AeroSpace
 
@@ -182,7 +194,9 @@ Mono in Zed, add it to `~/.config/zed/settings.json`:
 │       └── themes/{laude.json,vigil.json}
 ├── git/.gitconfig
 ├── install.sh
-├── scripts/sync-themes.sh
+├── scripts
+│   ├── audit.sh
+│   └── sync-themes.sh
 └── zsh
     ├── .zprofile
     └── .zshrc
