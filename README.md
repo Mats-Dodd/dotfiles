@@ -22,8 +22,10 @@ Install the bootstrap dependencies and apply the repository:
 
 ```sh
 sudo apt-get update
-sudo apt-get install -y chezmoi git curl
-chezmoi init --apply Mats-Dodd
+sudo apt-get install -y git curl
+mkdir -p ~/.local/bin
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+~/.local/bin/chezmoi init --apply Mats-Dodd
 ```
 
 Chezmoi installs the remaining APT packages, installs Mise into
