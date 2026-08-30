@@ -9,8 +9,8 @@
   },
   "packages": [
     "npm:@ogulcancelik/pi-codex-compaction@0.1.4",
-    "npm:@pi-plugins/fast-mode@0.1.10",
-    "npm:pi-web-search"
+    "npm:pi-web-search",
+    "git:github.com/Mats-Dodd/pi-fast-mode@v1.0.1"
   ],
   "lastChangelogVersion": "0.84.4"
 }
