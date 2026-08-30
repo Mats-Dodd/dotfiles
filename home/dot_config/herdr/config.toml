@@ -29,3 +29,4 @@ peach = "#FFC799"
 
 [ui]
 accent = "#FFC799"
+hide_tab_bar_when_single_tab = true
