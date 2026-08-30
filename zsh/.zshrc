@@ -24,6 +24,7 @@ export OTUI_PALETTE_IDLE_TIMEOUT_MS=1
 export OPENCODE_FAST_BOOT=1
 
 alias o='opencode'
+alias p='pi'
 alias g='git'
 alias gs='git status --short --branch'
 alias gaa='git add --all'

@@ -43,7 +43,7 @@
     "customMessageText": "foreground",
     "customMessageLabel": "pink",
     "toolPendingBg": "surface",
-    "toolSuccessBg": "addedBackground",
+    "toolSuccessBg": "surface",
     "toolErrorBg": "removedBackground",
     "toolTitle": "orange",
     "toolOutput": "muted",
