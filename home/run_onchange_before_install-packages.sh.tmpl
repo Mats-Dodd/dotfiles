@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu") }}
+if [[ "{{ .chezmoi.osRelease.versionID }}" != "24.04" ]]; then
+  printf 'warning: package bootstrap is tested on Ubuntu 24.04, found %s\n' '{{ .chezmoi.osRelease.versionID }}' >&2
+fi
+
+sudo apt-get update
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -y universe
+sudo apt-get update
+sudo apt-get install -y \
+  bat \
+  build-essential \
+  ca-certificates \
+  curl \
+  fd-find \
+  fzf \
+  git \
+  git-delta \
+  unzip \
+  zoxide \
+  zsh \
+  zsh-autosuggestions
+
+mkdir -p "$HOME/.local/bin"
+if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
+  ln -sfn "$(command -v fdfind)" "$HOME/.local/bin/fd"
+fi
+if ! command -v bat >/dev/null 2>&1 && command -v batcat >/dev/null 2>&1; then
+  ln -sfn "$(command -v batcat)" "$HOME/.local/bin/bat"
+fi
+
+if ! command -v mise >/dev/null 2>&1 && [[ ! -x "$HOME/.local/bin/mise" ]]; then
+  curl https://mise.run | sh
+fi
+{{- else if eq .chezmoi.os "darwin" }}
+if ! command -v brew >/dev/null 2>&1; then
+  printf 'Homebrew is required before applying these dotfiles on macOS.\n' >&2
+  exit 1
+fi
+HOMEBREW_NO_AUTO_UPDATE=1 brew bundle --file="{{ .chezmoi.sourceDir }}/../Brewfile"
+{{- else }}
+printf 'Automatic package installation is not supported on this platform.\n' >&2
+{{- end }}

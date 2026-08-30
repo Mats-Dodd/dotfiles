@@ -1,3 +1,6 @@
+typeset -U path PATH
+path=("$HOME/.local/bin" $path)
+
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
@@ -10,10 +13,18 @@ setopt share_history
 bindkey -e
 zle_highlight=('default:fg=#FFC799')
 
-eval "$(mise activate zsh)"
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+fi
 
 typeset -U fpath FPATH
-fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+{{- if eq .chezmoi.os "darwin" }}
+if (( $+commands[brew] )); then
+  fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+fi
+{{- else if eq .chezmoi.os "linux" }}
+fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fpath)
+{{- end }}
 autoload -Uz compinit
 compinit
 
@@ -38,7 +49,12 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
 
 if (( $+commands[fzf] )); then
-  source <(fzf --zsh)
+  if fzf --zsh >/dev/null 2>&1; then
+    source <(fzf --zsh)
+  else
+    [[ -r /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh
+    [[ -r /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+  fi
 fi
 
 if (( $+commands[zoxide] )); then
@@ -52,9 +68,16 @@ fi
 
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#595959'
-if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+for autosuggestions_file in \
+  /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh; do
+  if [[ -r "$autosuggestions_file" ]]; then
+    source "$autosuggestions_file"
+    break
+  fi
+done
+unset autosuggestions_file
 
 if (( $+commands[starship] )); then
   eval "$(starship init zsh)"

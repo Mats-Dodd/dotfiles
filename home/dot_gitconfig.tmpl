@@ -6,8 +6,10 @@
 	s = status --short --branch
 	hdiff = !hunk diff
 	hshow = !hunk show
+{{- if eq .chezmoi.os "darwin" }}
 [credential]
 	helper = osxkeychain
+{{- end }}
 [core]
 	pager = delta
 	editor = hx

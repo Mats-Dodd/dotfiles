@@ -11,7 +11,7 @@ sync_theme() {
   local vscode_file="$3"
   local pi_file="${4:-}"
   local source_dir="$CODE_DIR/$slug"
-  local extension_dir="$DOTFILES_DIR/config/vscode/extensions/$slug-theme"
+  local extension_dir="$DOTFILES_DIR/home/dot_local/share/dotfiles/vscode-extensions/$slug-theme"
 
   if [[ ! -d "$source_dir" ]]; then
     printf 'missing theme repository: %s\n' "$source_dir" >&2
@@ -20,8 +20,8 @@ sync_theme() {
 
   npm test --prefix "$source_dir"
 
-  mkdir -p "$DOTFILES_DIR/config/zed/themes" "$extension_dir/vscode"
-  cp "$source_dir/themes/$zed_file" "$DOTFILES_DIR/config/zed/themes/$zed_file"
+  mkdir -p "$DOTFILES_DIR/home/dot_config/zed/themes" "$extension_dir/vscode"
+  cp "$source_dir/themes/$zed_file" "$DOTFILES_DIR/home/dot_config/zed/themes/$zed_file"
   cp "$source_dir/vscode/$vscode_file" "$extension_dir/vscode/$vscode_file"
   cp "$source_dir/package.json" "$extension_dir/package.json"
   cp "$source_dir/LICENSE" "$extension_dir/LICENSE"
@@ -29,8 +29,8 @@ sync_theme() {
   cp "$source_dir/THIRD_PARTY_NOTICES.md" "$extension_dir/THIRD_PARTY_NOTICES.md"
 
   if [[ -n "$pi_file" ]]; then
-    mkdir -p "$DOTFILES_DIR/config/pi/themes"
-    cp "$source_dir/pi/$pi_file" "$DOTFILES_DIR/config/pi/themes/$pi_file"
+    mkdir -p "$DOTFILES_DIR/home/dot_pi/agent/themes"
+    cp "$source_dir/pi/$pi_file" "$DOTFILES_DIR/home/dot_pi/agent/themes/$pi_file"
   fi
 
   printf 'synced %s\n' "$slug"

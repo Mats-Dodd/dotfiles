@@ -30,7 +30,11 @@ palette = 13=#FBADFF
 palette = 14=#99FFE4
 palette = 15=#E3E3DD
 
+{{ if eq .chezmoi.os "darwin" -}}
 macos-titlebar-style = hidden
+{{- else if eq .chezmoi.os "linux" }}
+window-decoration = auto
+{{- end }}
 window-padding-x = 0
 window-padding-y = 0
 window-padding-color = extend-always
