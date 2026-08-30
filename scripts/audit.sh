@@ -29,6 +29,23 @@ fi
 printf 'architecture: %s\n' "$(uname -m)"
 printf 'shell: %s\n' "$SHELL"
 
+section "Nix and devenv"
+if command -v nix >/dev/null 2>&1; then
+  nix --version
+else
+  printf 'nix: missing\n'
+fi
+if command -v devenv >/dev/null 2>&1; then
+  devenv version
+else
+  printf 'devenv: missing\n'
+fi
+if [[ -r "$HOME/.config/nix/nix.conf" ]] && grep -Eq '^experimental-features = .*nix-command.*flakes' "$HOME/.config/nix/nix.conf"; then
+  printf 'nix-command and flakes: enabled\n'
+else
+  printf 'nix-command and flakes: missing\n'
+fi
+
 section "Dotfiles"
 git -C "$DOTFILES_DIR" status --short --branch
 if command -v chezmoi >/dev/null 2>&1; then
@@ -95,7 +112,7 @@ else
 fi
 
 section "Command ownership"
-for command_name in git gh hx node npm pnpm bun rustc cargo go uv pi python3 pip3 docker kubectl; do
+for command_name in git gh hx nix devenv node npm pnpm bun rustc cargo go uv pi python3 pip3 docker kubectl; do
   command_path="$(command -v "$command_name" 2>/dev/null || true)"
   printf '%-10s %s\n' "$command_name" "${command_path:-missing}"
 done

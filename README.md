@@ -9,6 +9,7 @@ Portable macOS and Ubuntu 24.04 LTS configuration managed with
 - Starship, fzf, fd, bat, zoxide, and local-only Atuin history
 - Mise-managed language runtimes and Pi, plus Linux installs of Helix,
   Starship, Atuin, and Hunk
+- Pinned Nix and devenv bootstrap with automatic project activation
 - Delta as the default Git pager
 - Vigil themes for Ghostty, Helix, Herdr, Hunk, Pi, Zed, VS Code, and Cursor
 - AeroSpace and JankyBorders on macOS only
@@ -58,7 +59,8 @@ chezmoi init --apply Mats-Dodd
 ```
 
 The Chezmoi package script applies the tracked `Brewfile`; Mise installs the
-portable tools and language runtimes.
+portable tools and language runtimes. Chezmoi also installs pinned Nix and
+devenv releases and enables automatic devenv project activation.
 
 ## Existing clone
 
@@ -94,6 +96,9 @@ machine-local helper in `~/.gitconfig.local`.
 
 - Ubuntu system packages: APT, from the Chezmoi package script
 - macOS system and desktop packages: Homebrew, from `Brewfile`
+- Nix: pinned system-level installer from the Chezmoi devenv bootstrap
+- devenv CLI: pinned Nix user profile from the same bootstrap
+- Project toolchains and build tools: each project's devenv configuration
 - Language tools and Linux-only portable CLI tools: Mise, from
   `home/dot_config/mise/config.toml`
 - Desktop applications and Berkeley Mono: installed separately where noted
@@ -153,6 +158,7 @@ global language packages, command ownership, and broken executable links.
 │   ├── dot_pi/agent             # Pi configuration
 │   ├── dot_zprofile.tmpl
 │   ├── dot_zshrc.tmpl
+│   ├── run_onchange_before_install-devenv.sh.tmpl
 │   ├── run_onchange_before_install-packages.sh.tmpl
 │   └── run_onchange_after_install-tools.sh.tmpl
 ├── install.sh                   # local-checkout Chezmoi wrapper

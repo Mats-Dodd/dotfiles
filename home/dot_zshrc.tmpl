@@ -17,6 +17,10 @@ if (( $+commands[mise] )); then
   eval "$(mise activate zsh)"
 fi
 
+if (( $+commands[devenv] )); then
+  eval "$(devenv hook zsh)"
+fi
+
 typeset -U fpath FPATH
 {{- if eq .chezmoi.os "darwin" }}
 if (( $+commands[brew] )); then

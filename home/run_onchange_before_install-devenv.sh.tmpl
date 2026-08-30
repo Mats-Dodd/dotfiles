@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+NIX_INSTALLER_VERSION="2.35.1"
+DEVENV_VERSION="2.2.2"
+NIXPKGS_REV="e8be7818e19ada32105a8af937a6a473b38167ca"
+
+if ! command -v nix >/dev/null 2>&1 && [[ ! -r /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+  case "$(uname -s)-$(uname -m)" in
+    Darwin-arm64)
+      installer_target="aarch64-darwin"
+      installer_sha256="82723616373d0c3f0d07b892f5f5c023da825b8969a2351c7055926d0bcf5553"
+      ;;
+    Linux-aarch64 | Linux-arm64)
+      installer_target="aarch64-linux"
+      installer_sha256="7e6e2f753144d7f19b16a9fce4b354cb0f46d1d47e6908bfb9186c89e0e0e649"
+      ;;
+    Linux-x86_64)
+      installer_target="x86_64-linux"
+      installer_sha256="3b49a0b91820accb76e3d9ff7ed64fc430121b9fafb3869b0d549721fbeb4c85"
+      ;;
+    *)
+      printf 'Nix bootstrap is unsupported on %s-%s.\n' "$(uname -s)" "$(uname -m)" >&2
+      exit 1
+      ;;
+  esac
+
+  installer="$(mktemp)"
+  trap 'rm -f "$installer"' EXIT
+  curl -fsSL \
+    "https://github.com/NixOS/nix-installer/releases/download/${NIX_INSTALLER_VERSION}/nix-installer-${installer_target}" \
+    -o "$installer"
+
+  if command -v shasum >/dev/null 2>&1; then
+    actual_sha256="$(shasum -a 256 "$installer" | awk '{print $1}')"
+  else
+    actual_sha256="$(sha256sum "$installer" | awk '{print $1}')"
+  fi
+  if [[ "$actual_sha256" != "$installer_sha256" ]]; then
+    printf 'Nix installer checksum mismatch.\n' >&2
+    exit 1
+  fi
+
+  chmod +x "$installer"
+  "$installer" install --no-confirm
+  rm -f "$installer"
+  trap - EXIT
+fi
+
+if [[ -r /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+  # shellcheck disable=SC1091
+  source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
+if ! command -v nix >/dev/null 2>&1; then
+  printf 'Nix installation completed but nix is unavailable. Start a new shell and apply again.\n' >&2
+  exit 1
+fi
+
+installed_nix_version="$(nix --version | awk '{print $3}')"
+if [[ "$installed_nix_version" != "$NIX_INSTALLER_VERSION" ]]; then
+  printf 'Expected Nix %s, found %s.\n' "$NIX_INSTALLER_VERSION" "$installed_nix_version" >&2
+  exit 1
+fi
+
+if ! nix profile list --json 2>/dev/null | grep -q "$NIXPKGS_REV"; then
+  if nix profile list --json 2>/dev/null | grep -q '"devenv"'; then
+    nix profile remove devenv
+  fi
+  nix --extra-experimental-features 'nix-command flakes' profile add \
+    "github:NixOS/nixpkgs/${NIXPKGS_REV}#devenv"
+fi
+
+installed_devenv_version="$(devenv version | awk '{print $2}')"
+if [[ "$installed_devenv_version" != "$DEVENV_VERSION" ]]; then
+  printf 'Expected devenv %s, found %s.\n' "$DEVENV_VERSION" "$installed_devenv_version" >&2
+  exit 1
+fi
